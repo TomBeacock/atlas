@@ -60,6 +60,10 @@ target_sources(atlas
 		"include/atlas/math/quaternion.hpp"	"include/atlas/math/quaternion.inl"
 		"include/atlas/math/quaternion_func.hpp" "include/atlas/math/quaternion_func.inl"
 
+		"include/atlas/events/key_codes.hpp" "include/atlas/events/key_codes.inl"
+		"include/atlas/events/mouse_codes.hpp" "include/atlas/events/mouse_codes.inl"
+		"include/atlas/events/event.hpp" "include/atlas/events/event.inl"
+
 		"include/atlas/window/window.hpp"
 		"include/atlas/window/stage.hpp"
 
