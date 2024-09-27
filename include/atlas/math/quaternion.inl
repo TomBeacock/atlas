@@ -44,10 +44,10 @@ template<typename T>
 template<typename U>
 constexpr QuaternionT<T> &QuaternionT<T>::operator=(const QuaternionT<U> &q)
 {
-    this->x = static_cast<T>(q.x);
-    this->y = static_cast<T>(q.y);
-    this->z = static_cast<T>(q.z);
-    this->w = static_cast<T>(q.w);
+    x = static_cast<T>(q.x);
+    y = static_cast<T>(q.y);
+    z = static_cast<T>(q.z);
+    w = static_cast<T>(q.w);
     return *this;
 }
 
@@ -55,10 +55,10 @@ template<typename T>
 template<typename U>
 constexpr QuaternionT<T> &QuaternionT<T>::operator+=(const QuaternionT<U> &q)
 {
-    this->x += static_cast<T>(q.x);
-    this->y += static_cast<T>(q.y);
-    this->z += static_cast<T>(q.z);
-    this->w += static_cast<T>(q.w);
+    x += static_cast<T>(q.x);
+    y += static_cast<T>(q.y);
+    z += static_cast<T>(q.z);
+    w += static_cast<T>(q.w);
     return *this;
 }
 
@@ -66,10 +66,10 @@ template<typename T>
 template<typename U>
 constexpr QuaternionT<T> &QuaternionT<T>::operator-=(const QuaternionT<U> &q)
 {
-    this->x -= static_cast<T>(q.x);
-    this->y -= static_cast<T>(q.y);
-    this->z -= static_cast<T>(q.z);
-    this->w -= static_cast<T>(q.w);
+    x -= static_cast<T>(q.x);
+    y -= static_cast<T>(q.y);
+    z -= static_cast<T>(q.z);
+    w -= static_cast<T>(q.w);
     return *this;
 }
 
@@ -77,10 +77,10 @@ template<typename T>
 template<typename U>
 constexpr QuaternionT<T> &QuaternionT<T>::operator*=(U scalar)
 {
-    this->x *= static_cast<T>(scalar);
-    this->y *= static_cast<T>(scalar);
-    this->z *= static_cast<T>(scalar);
-    this->w *= static_cast<T>(scalar);
+    x *= static_cast<T>(scalar);
+    y *= static_cast<T>(scalar);
+    z *= static_cast<T>(scalar);
+    w *= static_cast<T>(scalar);
     return *this;
 }
 
@@ -90,10 +90,10 @@ constexpr QuaternionT<T> &QuaternionT<T>::operator*=(const QuaternionT<U> &q)
 {
     const QuaternionT<T> q1(*this);
     const QuaternionT<T> q2(q);
-    this->x = q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y;
-    this->y = q1.w * q2.y + q1.y * q2.w + q1.z * q2.x - q1.x * q2.z;
-    this->z = q1.w * q2.z + q1.z * q2.w + q1.x * q2.y - q1.y * q2.x;
-    this->w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z;
+    x = q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y;
+    y = q1.w * q2.y + q1.y * q2.w + q1.z * q2.x - q1.x * q2.z;
+    z = q1.w * q2.z + q1.z * q2.w + q1.x * q2.y - q1.y * q2.x;
+    w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z;
     return *this;
 }
 
@@ -101,10 +101,10 @@ template<typename T>
 template<typename U>
 constexpr QuaternionT<T> &QuaternionT<T>::operator/=(U scalar)
 {
-    this->x /= static_cast<T>(scalar);
-    this->y /= static_cast<T>(scalar);
-    this->z /= static_cast<T>(scalar);
-    this->w /= static_cast<T>(scalar);
+    x /= static_cast<T>(scalar);
+    y /= static_cast<T>(scalar);
+    z /= static_cast<T>(scalar);
+    w /= static_cast<T>(scalar);
     return *this;
 }
 

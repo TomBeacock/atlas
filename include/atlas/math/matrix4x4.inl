@@ -53,10 +53,10 @@ template<typename T>
 template<typename U>
 constexpr MatrixT<4, 4, T> &Atlas::Math::MatrixT<4, 4, T>::operator=(U scalar)
 {
-    this->cols[0] = Col(scalar);
-    this->cols[1] = Col(scalar);
-    this->cols[2] = Col(scalar);
-    this->cols[3] = Col(scalar);
+    cols[0] = Col(scalar);
+    cols[1] = Col(scalar);
+    cols[2] = Col(scalar);
+    cols[3] = Col(scalar);
     return *this;
 }
 
@@ -65,10 +65,10 @@ template<typename U>
 constexpr MatrixT<4, 4, T> &Atlas::Math::MatrixT<4, 4, T>::operator=(
     const MatrixT<4, 4, U> &m)
 {
-    this->cols[0] = m[0];
-    this->cols[1] = m[1];
-    this->cols[2] = m[2];
-    this->cols[3] = m[3];
+    cols[0] = m[0];
+    cols[1] = m[1];
+    cols[2] = m[2];
+    cols[3] = m[3];
     return *this;
 }
 
@@ -76,10 +76,10 @@ template<typename T>
 template<typename U>
 constexpr MatrixT<4, 4, T> &MatrixT<4, 4, T>::operator+=(U scalar)
 {
-    this->cols[0] += scalar;
-    this->cols[1] += scalar;
-    this->cols[2] += scalar;
-    this->cols[3] += scalar;
+    cols[0] += scalar;
+    cols[1] += scalar;
+    cols[2] += scalar;
+    cols[3] += scalar;
     return *this;
 }
 
@@ -88,10 +88,10 @@ template<typename U>
 constexpr MatrixT<4, 4, T> &MatrixT<4, 4, T>::operator+=(
     const MatrixT<4, 4, U> &m)
 {
-    this->cols[0] += m[0];
-    this->cols[1] += m[1];
-    this->cols[2] += m[2];
-    this->cols[3] += m[3];
+    cols[0] += m[0];
+    cols[1] += m[1];
+    cols[2] += m[2];
+    cols[3] += m[3];
     return *this;
 }
 
@@ -99,10 +99,10 @@ template<typename T>
 template<typename U>
 constexpr MatrixT<4, 4, T> &MatrixT<4, 4, T>::operator-=(U scalar)
 {
-    this->cols[0] -= scalar;
-    this->cols[1] -= scalar;
-    this->cols[2] -= scalar;
-    this->cols[3] -= scalar;
+    cols[0] -= scalar;
+    cols[1] -= scalar;
+    cols[2] -= scalar;
+    cols[3] -= scalar;
     return *this;
 }
 
@@ -111,10 +111,10 @@ template<typename U>
 constexpr MatrixT<4, 4, T> &MatrixT<4, 4, T>::operator-=(
     const MatrixT<4, 4, U> &m)
 {
-    this->cols[0] -= m[0];
-    this->cols[1] -= m[1];
-    this->cols[2] -= m[2];
-    this->cols[3] -= m[3];
+    cols[0] -= m[0];
+    cols[1] -= m[1];
+    cols[2] -= m[2];
+    cols[3] -= m[3];
     return *this;
 }
 
@@ -122,10 +122,10 @@ template<typename T>
 template<typename U>
 constexpr MatrixT<4, 4, T> &MatrixT<4, 4, T>::operator*=(U scalar)
 {
-    this->cols[0] *= scalar;
-    this->cols[1] *= scalar;
-    this->cols[2] *= scalar;
-    this->cols[3] *= scalar;
+    cols[0] *= scalar;
+    cols[1] *= scalar;
+    cols[2] *= scalar;
+    cols[3] *= scalar;
     return *this;
 }
 
@@ -141,10 +141,10 @@ template<typename T>
 template<typename U>
 constexpr MatrixT<4, 4, T> &MatrixT<4, 4, T>::operator/=(U scalar)
 {
-    this->cols[0] /= scalar;
-    this->cols[1] /= scalar;
-    this->cols[2] /= scalar;
-    this->cols[3] /= scalar;
+    cols[0] /= scalar;
+    cols[1] /= scalar;
+    cols[2] /= scalar;
+    cols[3] /= scalar;
     return *this;
 }
 

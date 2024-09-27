@@ -67,9 +67,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator=(U scalar)
 {
-    this->x = static_cast<T>(scalar);
-    this->y = static_cast<T>(scalar);
-    this->z = static_cast<T>(scalar);
+    x = static_cast<T>(scalar);
+    y = static_cast<T>(scalar);
+    z = static_cast<T>(scalar);
     return *this;
 }
 
@@ -77,9 +77,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator=(const VectorT<3, U> &v)
 {
-    this->x = static_cast<T>(v.x);
-    this->y = static_cast<T>(v.y);
-    this->z = static_cast<T>(v.z);
+    x = static_cast<T>(v.x);
+    y = static_cast<T>(v.y);
+    z = static_cast<T>(v.z);
     return *this;
 }
 
@@ -87,9 +87,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator+=(U scalar)
 {
-    this->x += static_cast<T>(scalar);
-    this->y += static_cast<T>(scalar);
-    this->z += static_cast<T>(scalar);
+    x += static_cast<T>(scalar);
+    y += static_cast<T>(scalar);
+    z += static_cast<T>(scalar);
     return *this;
 }
 
@@ -97,9 +97,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator+=(const VectorT<3, U> &v)
 {
-    this->x += static_cast<T>(v.x);
-    this->y += static_cast<T>(v.y);
-    this->z += static_cast<T>(v.z);
+    x += static_cast<T>(v.x);
+    y += static_cast<T>(v.y);
+    z += static_cast<T>(v.z);
     return *this;
 }
 
@@ -107,9 +107,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator-=(U scalar)
 {
-    this->x -= static_cast<T>(scalar);
-    this->y -= static_cast<T>(scalar);
-    this->z -= static_cast<T>(scalar);
+    x -= static_cast<T>(scalar);
+    y -= static_cast<T>(scalar);
+    z -= static_cast<T>(scalar);
     return *this;
 }
 
@@ -117,9 +117,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator-=(const VectorT<3, U> &v)
 {
-    this->x -= static_cast<T>(v.x);
-    this->y -= static_cast<T>(v.y);
-    this->z -= static_cast<T>(v.z);
+    x -= static_cast<T>(v.x);
+    y -= static_cast<T>(v.y);
+    z -= static_cast<T>(v.z);
     return *this;
 }
 
@@ -127,9 +127,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator*=(U scalar)
 {
-    this->x *= static_cast<T>(scalar);
-    this->y *= static_cast<T>(scalar);
-    this->z *= static_cast<T>(scalar);
+    x *= static_cast<T>(scalar);
+    y *= static_cast<T>(scalar);
+    z *= static_cast<T>(scalar);
     return *this;
 }
 
@@ -137,9 +137,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator*=(const VectorT<3, U> &v)
 {
-    this->x *= static_cast<T>(v.x);
-    this->y *= static_cast<T>(v.y);
-    this->z *= static_cast<T>(v.z);
+    x *= static_cast<T>(v.x);
+    y *= static_cast<T>(v.y);
+    z *= static_cast<T>(v.z);
     return *this;
 }
 
@@ -147,9 +147,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator/=(U scalar)
 {
-    this->x /= static_cast<T>(scalar);
-    this->y /= static_cast<T>(scalar);
-    this->z /= static_cast<T>(scalar);
+    x /= static_cast<T>(scalar);
+    y /= static_cast<T>(scalar);
+    z /= static_cast<T>(scalar);
     return *this;
 }
 
@@ -157,9 +157,9 @@ template<typename T>
 template<typename U>
 constexpr VectorT<3, T> &VectorT<3, T>::operator/=(const VectorT<3, U> &v)
 {
-    this->x /= static_cast<T>(v.x);
-    this->y /= static_cast<T>(v.y);
-    this->z /= static_cast<T>(v.z);
+    x /= static_cast<T>(v.x);
+    y /= static_cast<T>(v.y);
+    z /= static_cast<T>(v.z);
     return *this;
 }
 
