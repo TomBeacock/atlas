@@ -56,7 +56,7 @@ target_sources(atlas
 		"include/atlas/math/vector_func.hpp" "include/atlas/math/vector_func.inl"
 		"include/atlas/math/matrix4x4.hpp" "include/atlas/math/matrix4x4.inl"
 		"include/atlas/math/matrix_func.hpp" "include/atlas/math/matrix_func.inl"
-		"include/atlas/math/matrix_transform.hpp""include/atlas/math/matrix_transform.inl"
+		"include/atlas/math/matrix_transform.hpp" "include/atlas/math/matrix_transform.inl"
 		"include/atlas/math/quaternion.hpp"	"include/atlas/math/quaternion.inl"
 		"include/atlas/math/quaternion_func.hpp" "include/atlas/math/quaternion_func.inl"
 
@@ -73,7 +73,7 @@ target_sources(atlas
 
 # Platform
 if(WIN32)
-	message("Platform detected: Win32")
+	message("Build platform: Win32")
 	target_compile_definitions(atlas PUBLIC ATLAS_PLATFORM_WIN32)
 	set(CMAKE_WIN32_EXECUTABLE true)
 	set(D3D12 true)
@@ -95,6 +95,7 @@ endif()
 
 # Graphics API
 if(D3D12)
+	message("Graphics: Direct3D12")
 	target_compile_definitions(atlas PUBLIC ATLAS_GRAPHICS_D3D12)
 endif()
 
