@@ -78,14 +78,14 @@ class Event {
 
   private:
     template<typename T, typename... Ts>
-    constexpr static bool is_in_parameter_pack(const std::variant<Ts...> &)
+    constexpr static bool is_variant_type(const std::variant<Ts...> &)
     {
-        return std::is_same_v<T, Ts> || ...;
+        return (std::is_same_v<T, Ts> || ...);
     }
 
     template<typename T>
     constexpr static bool is_event_type
-        = is_in_parameter_pack<T>(decltype(m_data)());
+        = is_variant_type<T>(decltype(m_data)());
 };
 }  // namespace Atlas
 
