@@ -112,7 +112,7 @@ QualifierOrder:
 ReferenceAlignment: Right
 ReflowComments: true
 RemoveBracesLLVM: false
-RemoveParentheses: ReturnStatement
+RemoveParentheses: Never
 RemoveSemicolon: true
 RequiresClausePosition: OwnLine
 RequiresExpressionIndentation: OuterScope
