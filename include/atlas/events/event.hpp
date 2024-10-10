@@ -13,9 +13,12 @@ class Event {
 
     struct WindowClosing {};
 
+    struct WindowMoved {
+        Math::Nat2 position;
+    };
+
     struct WindowResized {
-        Nat32 width;
-        Nat32 height;
+        Math::Nat2 size;
     };
 
     struct KeyChanged {
@@ -46,7 +49,7 @@ class Event {
     };
 
   public:
-    Event() = default;
+    Event();
 
     template<typename T>
     Event(const T &data);
@@ -72,8 +75,9 @@ class Event {
     explicit operator bool() const;
 
   private:
-    std::variant<Empty, WindowClosing, WindowResized, KeyPressed, KeyReleased,
-        MouseButtonPressed, MouseButtonReleased, MouseWheelScrolled, MouseMoved>
+    std::variant<Empty, WindowClosing, WindowMoved, WindowResized, KeyPressed,
+        KeyReleased, MouseButtonPressed, MouseButtonReleased,
+        MouseWheelScrolled, MouseMoved>
         m_data;
 
   private:

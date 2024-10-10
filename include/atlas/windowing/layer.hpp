@@ -1,19 +1,23 @@
 #pragma once
 
 namespace Atlas {
-class Stage {
-    friend Atlas::Window;
+class Event;
+}  // namespace Atlas
+
+namespace Atlas {
+class Layer {
+    friend class Window;
 
   protected:
     /**
-     * @brief Called once when the stage is attached to a window.
+     * @brief Called once when the layer is attached to a window.
      */
     virtual void on_attach() {}
 
     /**
      * @brief Called for each event recieved.
      */
-    virtual void on_event() {}
+    virtual void on_event(Event &event) {}
 
     /**
      * @brief Called once per frame.

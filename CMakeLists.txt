@@ -33,7 +33,7 @@ target_sources(atlas
 		"src/atlas/debug/assert.cpp"
 		"src/atlas/debug/break.cpp"
 
-		"src/atlas/window/window.cpp"
+		"src/atlas/windowing/window.cpp"
 
 	PUBLIC FILE_SET pubilc_headers TYPE HEADERS BASE_DIRS "include" FILES
 		"include/atlas/atlas.hpp"
@@ -64,11 +64,10 @@ target_sources(atlas
 		"include/atlas/events/mouse_codes.hpp" "include/atlas/events/mouse_codes.inl"
 		"include/atlas/events/event.hpp" "include/atlas/events/event.inl"
 
-		"include/atlas/window/window.hpp"
-		"include/atlas/window/stage.hpp"
+		"include/atlas/windowing/window.hpp"
+		"include/atlas/windowing/layer.hpp"
 
 	PRIVATE FILE_SET private_headers TYPE HEADERS BASE_DIRS "src" FILES
-
 )
 
 # Platform
@@ -83,13 +82,13 @@ if(WIN32)
 			"src/atlas/main/win32/main.cpp"
 			"src/atlas/system/win32/string.cpp"
 			"src/atlas/system/win32/error.cpp"
-			"src/atlas/window/win32/window.cpp"
+			"src/atlas/windowing/win32/win32_window.cpp"
 
 		PRIVATE FILE_SET private_headers TYPE HEADERS BASE_DIRS "src" FILES
 			"src/atlas/system/win32/win32.hpp"
 			"src/atlas/system/win32/string.hpp"
 			"src/atlas/system/win32/error.hpp"
-			"src/atlas/window/win32/window.hpp"
+			"src/atlas/windowing/win32/win32_window.hpp"
 	)
 endif()
 

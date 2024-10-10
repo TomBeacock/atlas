@@ -1,6 +1,7 @@
-#include "atlas/window/win32/window.hpp"
+#include "atlas/windowing/win32/win32_window.hpp"
 
 #include "atlas/debug/assert.hpp"
+#include "atlas/debug/log.hpp"
 #include "atlas/system/win32/error.hpp"
 #include "atlas/system/win32/string.hpp"
 
@@ -24,13 +25,23 @@ Window::~Window()
     DestroyWindow(m_handle);
 }
 
-void Window::poll_events() const
+void Window::poll_events()
 {
     MSG msg{};
     while (PeekMessage(&msg, m_handle, 0, 0, PM_REMOVE)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
+}
+
+bool Window::pop_event(Event &out_event)
+{
+    if (m_events.empty()) {
+        return false;
+    }
+    out_event = std::move(m_events.front());
+    m_events.pop();
+    return true;
 }
 
 void Window::show() const
@@ -58,6 +69,26 @@ void Window::set_size(Math::Nat2 size) const
 
 LRESULT Window::handle_message(UINT msg, WPARAM w_param, LPARAM l_param)
 {
+    switch (msg) {
+        case WM_CLOSE: {
+            m_events.push(Event::WindowClosing{});
+            return 0;
+        }
+        case WM_MOVE: {
+            m_events.push(Event::WindowMoved{
+                Math::Nat2{static_cast<Int16>(LOWORD(l_param)),
+                           static_cast<Int16>(HIWORD(l_param))}
+            });
+            return 0;
+        }
+        case WM_SIZE: {
+            m_events.push(Event::WindowResized{
+                Math::Nat2{static_cast<Nat>(LOWORD(l_param)),
+                           static_cast<Nat>(HIWORD(l_param))}
+            });
+            return 0;
+        }
+    }
     return DefWindowProc(m_handle, msg, w_param, l_param);
 }
 

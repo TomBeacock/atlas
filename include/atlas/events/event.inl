@@ -1,4 +1,11 @@
+#include "event.hpp"
+
 namespace Atlas {
+inline Event::Event()
+  : m_data(Empty{})
+{
+}
+
 template<typename T>
 inline Event::Event(const T &data)
 {

@@ -1,13 +1,15 @@
 #pragma once
 
 #include "atlas/math.hpp"
+#include "atlas/windowing/layer.hpp"
 
 #include <memory>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace Atlas {
-class Stage;
+class Event;
 
 #ifdef ATLAS_PLATFORM_WIN32
 namespace Win32 {
@@ -21,13 +23,11 @@ using NativeWindow = Win32::Window;
 namespace Atlas {
 class Window {
   public:
-    /**
-     * @brief Construct window.
-     * @param stage Stage to attach.
-     * @param parent Parent window, or null for no parent.
-     */
-    Window(std::unique_ptr<Stage> stage, Window *parent = nullptr);
+    Window(Window *parent = nullptr);
     ~Window();
+
+    template<typename T, typename... Args>
+    constexpr Layer &attach_layer(Args &&...args);
 
     /**
      * @brief Poll window events.
@@ -45,10 +45,9 @@ class Window {
     void show();
 
     /**
-     * @brief Get the attached stage.
-     * @return The attached stage.
+     * @brief Stop the window from closing.
      */
-    inline Stage &get_stage() const;
+    void cancel_close();
 
     /**
      * @brief Set the window's title.
@@ -68,14 +67,28 @@ class Window {
      */
     void set_size(Math::Nat2 size) const;
 
+    static Window &create(Window *parent = nullptr);
+
   private:
+    Window &create_child();
+    void destroy_child(Window *child);
+
+  private:
+    Window *m_parent;
+    std::vector<std::unique_ptr<Window>> m_children;
+    std::vector<std::unique_ptr<Layer>> m_layers;
     std::unique_ptr<NativeWindow> m_native_window;
-    std::unique_ptr<Stage> m_stage;
     bool m_open = false;
+    bool m_closing = false;
 };
 
-inline Stage &Window::get_stage() const
+template<typename T, typename... Args>
+constexpr inline Layer &Window::attach_layer(Args &&...args)
 {
-    return *m_stage;
+    static_assert(std::is_base_of<Layer, T>());
+    m_layers.push_back(std::make_unique<T>(args...));
+    Layer &layer = *m_layers.back();
+    layer.on_attach();
+    return layer;
 }
 }  // namespace Atlas

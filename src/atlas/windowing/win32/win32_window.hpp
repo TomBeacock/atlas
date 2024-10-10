@@ -1,9 +1,15 @@
 #pragma once
 
+#include "atlas/events/event.hpp"
 #include "atlas/math.hpp"
 #include "atlas/system/win32/win32.hpp"
 
+#include <queue>
 #include <string_view>
+
+namespace Atlas {
+struct Event;
+}  // namespace Atlas
 
 namespace Atlas::Win32 {
 class Window {
@@ -11,7 +17,8 @@ class Window {
     Window(Window *parent = nullptr);
     ~Window();
 
-    void poll_events() const;
+    void poll_events();
+    bool pop_event(Event &out_event);
     void show() const;
 
     void set_title(const std::string_view title) const;
@@ -26,6 +33,7 @@ class Window {
 
   private:
     HWND m_handle = nullptr;
+    std::queue<Event> m_events;
 
     static bool initialized;
 };

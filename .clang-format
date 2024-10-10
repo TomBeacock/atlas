@@ -86,7 +86,7 @@ KeepEmptyLinesAtEOF: false
 KeepEmptyLinesAtTheStartOfBlocks: false
 LambdaBodyIndentation: Signature
 Language: Cpp
-LineEnding: LF
+LineEnding: DeriveLF
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 PPIndentWidth: 2
@@ -112,7 +112,7 @@ QualifierOrder:
 ReferenceAlignment: Right
 ReflowComments: true
 RemoveBracesLLVM: false
-RemoveParentheses: Never
+RemoveParentheses: Leave
 RemoveSemicolon: true
 RequiresClausePosition: OwnLine
 RequiresExpressionIndentation: OuterScope

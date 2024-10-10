@@ -5,5 +5,5 @@
 #include "events.hpp"
 #include "math.hpp"
 #include "types.hpp"
-#include "window/stage.hpp"
-#include "window/window.hpp"
+#include "windowing/layer.hpp"
+#include "windowing/window.hpp"

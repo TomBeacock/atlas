@@ -1,5 +1,4 @@
 #include "atlas/system/win32/win32.hpp"
-#include "atlas/window/win32/window.hpp"
 
 #include <stdlib.h>
 
