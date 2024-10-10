@@ -7,10 +7,6 @@
 #include <queue>
 #include <string_view>
 
-namespace Atlas {
-struct Event;
-}  // namespace Atlas
-
 namespace Atlas::Win32 {
 class Window {
   public:
