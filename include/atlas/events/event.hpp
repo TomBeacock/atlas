@@ -31,7 +31,7 @@ class Event {
     struct KeyReleased : KeyChanged {};
 
     struct MouseButtonChanged {
-        MouseButton mouse_button;
+        MouseButton button;
         Math::Int2 position;
     };
 

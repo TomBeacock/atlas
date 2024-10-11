@@ -18,7 +18,7 @@ class Window {
     void show() const;
 
     void set_title(const std::string_view title) const;
-    void set_position(Math::Nat2 position) const;
+    void set_position(Math::Int2 position) const;
     void set_size(Math::Nat2 size) const;
 
   private:
@@ -30,6 +30,7 @@ class Window {
   private:
     HWND m_handle = nullptr;
     std::queue<Event> m_events;
+    Math::Float2 m_last_mouse_position;
 
     static bool initialized;
 };

@@ -55,16 +55,19 @@ void Window::set_title(const std::string_view title) const
     SetWindowText(m_handle, wide_title.c_str());
 }
 
-void Window::set_position(Math::Nat2 position) const
+void Window::set_position(Math::Int2 position) const
 {
-    SetWindowPos(m_handle, nullptr, static_cast<Int>(position.x),
-        static_cast<Int>(position.y), 0, 0, SWP_NOSIZE | SWP_NOREPOSITION);
+    SetWindowPos(m_handle, nullptr, position.x, position.y, 0, 0,
+        SWP_NOSIZE | SWP_NOREPOSITION);
 }
 
 void Window::set_size(Math::Nat2 size) const
 {
-    SetWindowPos(m_handle, nullptr, 0, 0, static_cast<Int>(size.x),
-        static_cast<Int>(size.y), SWP_NOMOVE | SWP_NOREPOSITION);
+    RECT rect{0, 0, static_cast<INT>(size.x), static_cast<INT>(size.y)};
+    AdjustWindowRectEx(
+        &rect, GetWindowStyle(m_handle), FALSE, GetWindowExStyle(m_handle));
+    SetWindowPos(m_handle, nullptr, 0, 0, rect.right - rect.left,
+        rect.bottom - rect.top, SWP_NOMOVE | SWP_NOREPOSITION);
 }
 
 LRESULT Window::handle_message(UINT msg, WPARAM w_param, LPARAM l_param)
@@ -76,8 +79,8 @@ LRESULT Window::handle_message(UINT msg, WPARAM w_param, LPARAM l_param)
         }
         case WM_MOVE: {
             m_events.push(Event::WindowMoved{
-                Math::Nat2{static_cast<Int16>(LOWORD(l_param)),
-                           static_cast<Int16>(HIWORD(l_param))}
+                Math::Nat2{static_cast<Nat>(LOWORD(l_param)),
+                           static_cast<Nat>(HIWORD(l_param))}
             });
             return 0;
         }
@@ -86,6 +89,97 @@ LRESULT Window::handle_message(UINT msg, WPARAM w_param, LPARAM l_param)
                 Math::Nat2{static_cast<Nat>(LOWORD(l_param)),
                            static_cast<Nat>(HIWORD(l_param))}
             });
+            return 0;
+        }
+        case WM_LBUTTONDOWN: {
+            m_events.push(Event::MouseButtonPressed{
+                Atlas::MouseButton::Left,
+                {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+            });
+            return 0;
+        }
+        case WM_LBUTTONUP: {
+            m_events.push(Event::MouseButtonReleased{
+                Atlas::MouseButton::Left,
+                {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+            });
+            return 0;
+        }
+        case WM_RBUTTONDOWN: {
+            m_events.push(Event::MouseButtonPressed{
+                Atlas::MouseButton::Right,
+                {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+            });
+            return 0;
+        }
+        case WM_RBUTTONUP: {
+            m_events.push(Event::MouseButtonReleased{
+                Atlas::MouseButton::Right,
+                {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+            });
+            return 0;
+        }
+        case WM_MBUTTONDOWN: {
+            m_events.push(Event::MouseButtonPressed{
+                Atlas::MouseButton::Middle,
+                {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+            });
+            return 0;
+        }
+        case WM_MBUTTONUP: {
+            m_events.push(Event::MouseButtonReleased{
+                Atlas::MouseButton::Middle,
+                {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+            });
+            return 0;
+        }
+        case WM_XBUTTONDOWN: {
+            if (GET_XBUTTON_WPARAM(w_param) == XBUTTON1) {
+                m_events.push(Event::MouseButtonPressed{
+                    Atlas::MouseButton::X1,
+                    {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+                });
+            }
+            else {
+                m_events.push(Event::MouseButtonPressed{
+                    Atlas::MouseButton::X2,
+                    {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+                });
+            }
+            return TRUE;
+        }
+        case WM_XBUTTONUP: {
+            if (GET_XBUTTON_WPARAM(w_param) == XBUTTON1) {
+                m_events.push(Event::MouseButtonReleased{
+                    Atlas::MouseButton::X1,
+                    {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+                });
+            }
+            else {
+                m_events.push(Event::MouseButtonReleased{
+                    Atlas::MouseButton::X2,
+                    {GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param)}
+                });
+            }
+            return TRUE;
+        }
+        case WM_MOUSEWHEEL: {
+            float delta = static_cast<float>(GET_WHEEL_DELTA_WPARAM(w_param))
+                          / WHEEL_DELTA;
+            m_events.push(Event::MouseWheelScrolled{Math::Float2(0, delta)});
+            return 0;
+        }
+        case WM_MOUSEHWHEEL: {
+            float delta = static_cast<float>(GET_WHEEL_DELTA_WPARAM(w_param))
+                          / WHEEL_DELTA;
+            m_events.push(Event::MouseWheelScrolled{Math::Float2(delta, 0)});
+            return 0;
+        }
+        case WM_MOUSEMOVE: {
+            Math::Float2 position(GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param));
+            Math::Float2 delta = position - m_last_mouse_position;
+            m_events.push(Event::MouseMoved{position, delta});
+            m_last_mouse_position = position;
             return 0;
         }
     }
