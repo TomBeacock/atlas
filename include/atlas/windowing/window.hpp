@@ -59,7 +59,7 @@ class Window {
      * @brief Set the window's position.
      * @param position New position.
      */
-    void set_position(Math::Nat2 position) const;
+    void set_position(Math::Int2 position) const;
 
     /**
      * @brief Set the window's size.

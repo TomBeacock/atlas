@@ -72,7 +72,7 @@ void Window::set_title(const std::string_view title) const
     m_native_window->set_title(title);
 }
 
-void Window::set_position(Math::Nat2 position) const
+void Window::set_position(Math::Int2 position) const
 {
     m_native_window->set_position(position);
 }
