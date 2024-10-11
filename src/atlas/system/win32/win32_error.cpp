@@ -1,7 +1,7 @@
-#include "atlas/system/win32/error.hpp"
+#include "atlas/system/win32/win32_error.hpp"
 
-#include "atlas/system/win32/string.hpp"
 #include "atlas/system/win32/win32.hpp"
+#include "atlas/system/win32/win32_string.hpp"
 
 #include <format>
 

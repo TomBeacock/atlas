@@ -1,4 +1,4 @@
-#include "atlas/system/win32/string.hpp"
+#include "atlas/system/win32/win32_string.hpp"
 
 #include "atlas/types.hpp"
 

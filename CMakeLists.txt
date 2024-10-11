@@ -79,17 +79,19 @@ if(WIN32)
 	target_link_options(atlas PUBLIC "/ENTRY:wWinMainCRTStartup" "/SUBSYSTEM:$<IF:$<CONFIG:Debug>,CONSOLE,WINDOWS>")
 	target_sources(atlas
 		PRIVATE
-			"src/atlas/main/win32/main.cpp"
-			"src/atlas/system/win32/string.cpp"
-			"src/atlas/system/win32/error.cpp"
+			"src/atlas/main/win32/win32_main.cpp"
+			"src/atlas/system/win32/win32_string.cpp"
+			"src/atlas/system/win32/win32_error.cpp"
+			"src/atlas/system/win32/win32_code_translation.cpp"
 			"src/atlas/windowing/win32/win32_window.cpp"
 
 		PRIVATE FILE_SET private_headers TYPE HEADERS BASE_DIRS "src" FILES
 			"src/atlas/system/win32/win32.hpp"
-			"src/atlas/system/win32/string.hpp"
-			"src/atlas/system/win32/error.hpp"
+			"src/atlas/system/win32/win32_string.hpp"
+			"src/atlas/system/win32/win32_error.hpp"
+			"src/atlas/system/win32/win32_code_translation.hpp"
 			"src/atlas/windowing/win32/win32_window.hpp"
-	)
+)
 endif()
 
 # Graphics API
