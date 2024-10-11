@@ -1,11 +1,13 @@
 #pragma once
 
+#include "atlas/types.hpp"
+
 #include <cstdint>
 #include <format>
 #include <ostream>
 
 namespace Atlas {
-enum class KeyCode : uint16_t {
+enum class KeyCode : Nat16 {
     // Ascii keys
     None = '\0',
     Backspace = '\b',
@@ -183,7 +185,7 @@ enum class KeyCode : uint16_t {
     WebBookmarks = 0xC22A,
 };
 
-enum class ScanCode : uint16_t {
+enum class ScanCode : Nat16 {
     // Keyboard and keypad. HID page 0x0007
     None = 0x00,
     A = 0x04,
@@ -390,8 +392,7 @@ struct std::formatter<Atlas::KeyCode> {
 
     auto format(const Atlas::KeyCode &key_code, std::format_context &ctx) const
     {
-        std::underlying_type_t<Atlas::KeyCode> val
-            = static_cast<std::underlying_type_t<Atlas::KeyCode>>(key_code);
+        auto val = std::to_underlying(key_code);
         if (val >= ' ' && val <= 'z') {
             return std::format_to(
                 ctx.out(), "{} ('{}')", val, static_cast<char>(val));
@@ -407,8 +408,7 @@ struct std::formatter<Atlas::ScanCode> {
     auto format(
         const Atlas::ScanCode &scan_code, std::format_context &ctx) const
     {
-        std::underlying_type_t<Atlas::ScanCode> val
-            = static_cast<std::underlying_type_t<Atlas::ScanCode>>(scan_code);
+        auto val = std::to_underlying(scan_code);
         return std::format_to(ctx.out(), "{}", val);
     }
 };

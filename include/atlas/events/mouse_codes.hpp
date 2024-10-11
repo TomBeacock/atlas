@@ -5,7 +5,7 @@
 #include <ostream>
 
 namespace Atlas {
-enum class MouseButton : uint8_t {
+enum class MouseButton : Nat8 {
     None = 0,
     Left = 1,
     Right = 2,
