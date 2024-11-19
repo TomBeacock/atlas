@@ -9,3 +9,44 @@
 Atlas is a multimedia application framework designed as a foundation for graphical applications.
 
 ---
+
+# Linking Atlas
+
+## CMake
+
+### FetchContent
+
+Fetch Atlas from repository:
+```CMake
+include(FetchContent)
+
+FetchContent_Declare(
+    atlas
+    GIT_REPOSITORY https://github.com/TomBeacock/atlas.git
+    GIT_TAG origin/main
+)
+
+FetchContent_MakeAvailable(atlas)
+```
+
+Link Atlas:
+```CMake
+target_link_libraries(your_target PRIVATE atlas::atlas)
+```
+
+### Git Submodule
+
+Add Atlas as a submodule:
+```Shell
+git submodule add https://github.com/TomBeacock/atlas.git your/submodule/directory
+```
+
+Add Atlas subdirectory:
+```CMake
+add_subdirectory(your/submodule/directory/atlas)
+```
+
+Link Atlas:
+```CMake
+target_link_libraries(your_target PRIVATE atlas::atlas)
+```
